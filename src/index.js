@@ -4,18 +4,12 @@ var data = require('./data');
 const OD = data.OD;
 var AR = data.AR.slice();
 var Alexa = require("alexa-sdk");
-this.attributes.score = 0;
 
 
 var handlers = {
    'LaunchRequest': function () {
-    this.response.speak('<audio src="https://s3.amazonaws.com/doesitfly/bada_bing_bada_boom._TTH_.mp3"/> Welcome, to the WWE Quiz. What is your name?').listen("Can you please tell me your name?"); 
+    this.response.speak('<audio src="https://s3.amazonaws.com/doesitfly/bada_bing_bada_boom._TTH_.mp3"/> Welcome, to the unofficial WWE Quiz. Alexa will ask you a question, and you have to tell the correct answer. Let\'s see how many you can answer correctly. Would you like to play?').listen("Ask for help if not sure what to do!"); 
     this.emit(":responseReady");
-   },
-   'NameIntent': function () {
-       this.attributes.name = slotValue(this.event.request.intent.slots.myname);
-       this.response.speak(`So ${this.attributes['name']}, Alexa will ask you a question, and you have to tell the correct answer. Let's see how many you can answer correctly. Would you like to play?`).listen("Ask for help if not sure what to do!");
-       this.emit(":responseReady");
    },
    'QuizIntent': function () {
        let outputspeech = "";
@@ -23,12 +17,12 @@ var handlers = {
            outputspeech += '<say-as interpret-as="interjection">all righty!</say-as>';
        }
        if(this.attributes.score != 0){
-           outputspeech += '<say-as interpret-as="interjection">all righty!</say-as> Right answer. ';
+           outputspeech += 'Right answer. The next question is,';
        }
        
        if(AR.length > 0 ) {
             this.attributes.randomizer = Math.floor(Math.random() * (AR.length-1));
-            outputspeech += `The next question is ${OD[AR[this.attributes.randomizer]].question} ?`;
+            outputspeech += ` ${OD[AR[this.attributes.randomizer]].question}`;
        }   
        this.response.speak(outputspeech).listen();
        this.emit(":responseReady");
@@ -39,17 +33,17 @@ var handlers = {
             AR.splice(this.attributes.randomizer,1);
             this.attributes.score += 1;
             if(AR.length == 0){
-                this.response.speak(`Well done ${this.attributes.name}, You completed the game, and got all ${this.attributes.score} of them correctly.`);
+                this.response.speak(`Well done, You completed the game, and got all ${this.attributes.score} of them correctly. If you enjoyed the game, do leave feedback and reviews on Amazon.`);
                 this.emit(':responseReady');
             }
             this.emit('QuizIntent');
         }
-        let finalSpeech = `<say-as interpret-as="interjection">argh!</say-as> Wrong Answer. You were ${OD[AR[this.attributes.randomizer]].finisher} . `;
+        let finalSpeech = `<say-as interpret-as="interjection">argh!</say-as> Wrong Answer. The correct answer is ${OD[AR[this.attributes.randomizer]].answer}. You were ${OD[AR[this.attributes.randomizer]].finisher} . `;
         if(this.attributes.score<=5){
-            finalSpeech += `You need to work more on your pro wrestling knowledge, ${this.attributes.name}. You got only ${this.attributes.score} correct.`;
+            finalSpeech += `You need to work more on your pro wrestling knowledge. You got only ${this.attributes.score} correct. Do you want to play again?`;
         }
         else {
-            finalSpeech += `You did good, ${this.attributes.name}. You got ${this.attributes.score} correct.`;
+            finalSpeech += `You did good. You got ${this.attributes.score} correct. Do you want to play again?`;
         }
         this.response.speak(finalSpeech).listen('Want to play again?');
         this.emit(':responseReady');
@@ -64,8 +58,7 @@ var handlers = {
         this.emit(":responseReady");
     },
     'AMAZON.HelpIntent': function () {
-        this.handler.state = "_DECISION";
-        this.response.speak("Alexa will ask you a question, and you have to tell whether it flies or not. You have to respond with a Yes or No. If you are able to answer all of them correctly, you win, else alexa wins. So would you like to play?").listen('Would you like to play?');
+        this.response.speak("Alexa will ask you a question, and you have to tell the correct answer. If you are able to answer all of them correctly, you win, else alexa wins. So would you like to play?").listen('Would you like to play?');
         this.emit(':responseReady');
     },
     'AMAZON.CancelIntent': function () {
@@ -81,12 +74,12 @@ var handlers = {
         this.emit(':responseReady');
     },
     'Unhandled': function() {
-        const message = 'I don\'t get it! Try saying Alexa, Open does it fly!';
+        const message = 'I don\'t get it! Try saying Alexa, Open unofficial WWE quiz!';
         this.response.speak(message);
         this.emit(':responseReady');
     },
     'UnhandledIntent': function() {
-        const message = 'I don\'t get it! Try saying Alexa, Open does it fly!';
+        const message = 'I don\'t get it! Try saying Alexa, Open unofficial WWE quiz!';
         this.response.speak(message);
         this.emit(':responseReady');
     }
