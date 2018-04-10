@@ -1,0 +1,168 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "unofficial w. w. e. quiz",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": [
+                        "cancel"
+                    ]
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": [
+                        "i need help",
+                        "help me alexa",
+                        "help me",
+                        "please help",
+                        "help",
+                        "alexa help"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NoIntent",
+                    "samples": [
+                        "naah",
+                        "nope",
+                        "No",
+                        "nopes",
+                        "not",
+                        "neah",
+                        "nah",
+                        "nahh",
+                        "na",
+                        "naa",
+                        "nop",
+                        "nops"
+                    ]
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": [
+                        "stop"
+                    ]
+                },
+                {
+                    "name": "AMAZON.YesIntent",
+                    "samples": [
+                        "yeah",
+                        "yup",
+                        "Yes",
+                        "yas",
+                        "yaas",
+                        "yos",
+                        "yip",
+                        "yuup",
+                        "yep",
+                        "yop",
+                        "yess"
+                    ]
+                },
+                {
+                    "name": "AnswerIntent",
+                    "slots": [
+                        {
+                            "name": "answer",
+                            "type": "quizAnswer"
+                        }
+                    ],
+                    "samples": [
+                        "The answer is {answer}",
+                        "{answer}",
+                        "answer is {answer}",
+                        "my answer is {answer}"
+                    ]
+                },
+                {
+                    "name": "UnhandledIntent",
+                    "slots": [],
+                    "samples": [
+                        "asdsadasdshas",
+                        "asjdjads adsjads",
+                        "basd basd",
+                        "ads gweriwsx adwq"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "quizAnswer",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "intercontinental championship",
+                                "synonyms": [
+                                    "intercontinental"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "dean ambrose",
+                                "synonyms": [
+                                    "ambrose"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "michelle mccool",
+                                "synonyms": [
+                                    "mccool"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "the boogeyman",
+                                "synonyms": [
+                                    "boogeyman"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "edge"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "rey mysterio",
+                                "synonyms": [
+                                    "mysterio"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "cesaro"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "donald trump",
+                                "synonyms": [
+                                    "trump"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "roman reigns",
+                                "synonyms": [
+                                    "reigns"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "nexus"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
